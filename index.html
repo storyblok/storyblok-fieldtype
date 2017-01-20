@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Storyblok Field-Type Plugin</title>
+    <link href="//app.storyblok.com/css/index-latest.css" media="all" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="plugin uk-form">
+      <div class="login__logo"></div>
+      <div class="plugin__preview">
+        <div class="uk-text-muted">
+          Below you see a preview how your plugin will look like in the Storyblok editor. 
+          In the file src/Plugin.vue you will find the code for this field type.
+          <a target="_blank" href="https://www.storyblok.com/docs/Guides/Creating-a-field-type-plugin">Read more...</a>
+        </div>
+        <div class="tree__form">
+          <span class="form__topic">Title (user defined)</span> 
+          <plugin :schema="schema" :model="model" v-on:changed-model="update"></plugin>
+          <span class="uk-text-muted form__hint">User defined description</span>
+        </div>
+      </div>
+
+      <pre>Debug output: {{ model|json }}</pre>
+    </div>
+
+    <script type="text/javascript">var ga = function() {}; var io = function() {return {on: function() {}}}</script>
+    <script src="//app.storyblok.com/js/app-latest.js"></script>
+    <script src="dist/build.js"></script>
+  </body>
+</html>
