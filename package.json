@@ -1,5 +1,5 @@
 {
-  "name": "Storyblok Meta Tag Field Type",
+  "name": "storyblok-metatag-plugin",
   "description": "A Storyblok Field-Type Plugin Project",
   "author": "Alexander Feiglstorfer <delooks@gmail.com>",
   "scripts": {

@@ -20,13 +20,14 @@ exports.insert = function (css) {
 
 },{}],2:[function(require,module,exports){
 var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert(".p-seo__google-title{color:blue;text-decoration:underline}.p-seo__google-link{color:green}.p-seo__preview{margin:5px 0 15px;padding:10px;color:#000;background:#fff}")
+var __vueify_style__ = __vueify_insert__.insert(".p-metatags__google-title{color:blue;text-decoration:underline}.p-metatags__google-link{color:green}.p-metatags__preview{margin:5px 0 15px;padding:10px;color:#000;background:#fff}")
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = {
+  plugin: 'metatags',
   computed: {
     charCount: function charCount() {
       return this.model.description.length;
@@ -37,8 +38,8 @@ exports.default = {
     initWith: function initWith() {
       return {
         plugin: 'metatags',
-        title: '',
-        description: ''
+        title: 'Your title',
+        description: 'Your description'
       };
     }
   },
@@ -53,7 +54,6 @@ exports.default = {
   watch: {
     'model': {
       handler: function handler(value) {
-        console.log(value);
         this.$emit('changed-model', value);
       },
       deep: true
@@ -61,7 +61,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div>Google snippet preview:<div class=p-seo__preview><div class=p-seo__google-title>{{ model.title }}</div><div class=p-seo__google-link>yoursite.com/example</div><div class=p-seo__google-description>{{ model.description }}</div></div><div class=uk-form-row><label>SEO Title</label><input type=text v-model=model.title class=uk-width-1-1></div><div class=uk-form-row><label>Meta description</label><textarea rows=4 v-model=model.description class=uk-width-1-1></textarea><div>{{ charCount }} of 156 chars used</div></div></div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div>Google snippet preview:<div class=p-metatags__preview><div class=p-metatags__google-title>{{ model.title }}</div><div class=p-metatags__google-link>yoursite.com/example</div><div class=p-metatags__google-description>{{ model.description }}</div></div><div class=uk-form-row><label>SEO Title</label><input type=text v-model=model.title class=uk-width-1-1></div><div class=uk-form-row><label>Meta description</label><textarea rows=4 v-model=model.description class=uk-width-1-1></textarea><div>{{ charCount }} of 156 chars used</div></div></div>"
 
 },{"vueify/lib/insert-css":1}],3:[function(require,module,exports){
 'use strict';
@@ -72,6 +72,6 @@ var _Plugin2 = _interopRequireDefault(_Plugin);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-window.storyblok.field_types['metatags'] = _Plugin2.default;
+window.storyblok.field_types[_Plugin2.default.plugin] = _Plugin2.default;
 
 },{"../Plugin.vue":2}]},{},[3]);
