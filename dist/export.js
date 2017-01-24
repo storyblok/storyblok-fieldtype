@@ -27,7 +27,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = {
-  plugin: 'metatags',
   computed: {
     charCount: function charCount() {
       return this.model.description.length;
@@ -72,6 +71,8 @@ var _Plugin2 = _interopRequireDefault(_Plugin);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-window.storyblok.field_types[_Plugin2.default.plugin] = _Plugin2.default;
+var init = _Plugin2.default.methods.initWith();
+
+window.storyblok.field_types[init.plugin] = _Plugin2.default;
 
 },{"../Plugin.vue":2}]},{},[3]);

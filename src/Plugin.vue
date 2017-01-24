@@ -21,7 +21,6 @@
 
 <script>
 export default {
-  plugin: 'metatags',
   computed: {
     charCount() {
       return this.model.description.length
