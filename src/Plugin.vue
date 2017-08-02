@@ -38,6 +38,13 @@ export default {
   },
   events: {
     'plugin:created': function() {
+      // Example:
+      // Get a list of tags from the managment api:
+      //
+      // this.api(`spaces/${this.spaceId}/tags`).get().then((res) => {
+      //   console.log(res.data.tags)
+      // })
+
       console.log('plugin:created')
     },
     'plugin:destroyed': function() {
