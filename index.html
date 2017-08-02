@@ -14,10 +14,13 @@
           In the file src/Plugin.vue you will find the code for this field type.
           <a target="_blank" href="https://www.storyblok.com/docs/Guides/Creating-a-field-type-plugin">Read more...</a>
         </div>
-        <div class="tree__form">
+        <div class="tree__form" v-if="loggedIn">
           <span class="form__topic">Title (user defined)</span> 
-          <plugin :schema="schema" :model="model" v-on:changed-model="update"></plugin>
+          <plugin :schema="schema" :model="model" :api="api" :space-id="spaceId" v-on:changed-model="update"></plugin>
           <span class="uk-text-muted form__hint">User defined description</span>
+        </div>
+        <div v-else>
+          Logging in to demo space...
         </div>
       </div>
 
