@@ -14,41 +14,23 @@
     <div class="uk-form-row">
       <label>Meta description</label>
       <textarea rows="4" v-model="model.description" class="uk-width-1-1"></textarea>
-      <div>{{ charCount }} of 156 chars used</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  computed: {
-    charCount() {
-      return this.model.description.length
-    }
-  },
   mixins: [window.Storyblok.plugin],
   methods: {
-    initWith: function() {
+    initWith() {
       return {
-        plugin: 'metatags',
+        plugin: 'my-plugin-name',
         title: 'Your title',
         description: 'Your description'
       }
-    }
-  },
-  events: {
-    'plugin:created': function() {
-      // Example:
-      // Get a list of tags from the managment api:
-      //
-      // this.api(`spaces/${this.spaceId}/tags`).get().then((res) => {
-      //   console.log(res.data.tags)
-      // })
-
-      console.log('plugin:created')
     },
-    'plugin:destroyed': function() {
-      console.log('plugin:destroyed')
+    pluginCreated() {
+      console.log('plugin:created')
     }
   },
   watch: {

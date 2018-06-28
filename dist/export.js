@@ -27,27 +27,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = {
-  computed: {
-    charCount: function charCount() {
-      return this.model.description.length;
-    }
-  },
   mixins: [window.Storyblok.plugin],
   methods: {
     initWith: function initWith() {
       return {
-        plugin: 'metatags',
+        plugin: 'my-plugin-name',
         title: 'Your title',
         description: 'Your description'
       };
-    }
-  },
-  events: {
-    'plugin:created': function pluginCreated() {
-      console.log('plugin:created');
     },
-    'plugin:destroyed': function pluginDestroyed() {
-      console.log('plugin:destroyed');
+    pluginCreated: function pluginCreated() {
+      console.log('plugin:created');
     }
   },
   watch: {
@@ -60,7 +50,7 @@ exports.default = {
   }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div>Google snippet preview:<div class=p-metatags__preview><div class=p-metatags__google-title>{{ model.title }}</div><div class=p-metatags__google-link>yoursite.com/example</div><div class=p-metatags__google-description>{{ model.description }}</div></div><div class=uk-form-row><label>SEO Title</label><input type=text v-model=model.title class=uk-width-1-1></div><div class=uk-form-row><label>Meta description</label><textarea rows=4 v-model=model.description class=uk-width-1-1></textarea><div>{{ charCount }} of 156 chars used</div></div></div>"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div>Google snippet preview:<div class=p-metatags__preview><div class=p-metatags__google-title>{{ model.title }}</div><div class=p-metatags__google-link>yoursite.com/example</div><div class=p-metatags__google-description>{{ model.description }}</div></div><div class=uk-form-row><label>SEO Title</label><input type=text v-model=model.title class=uk-width-1-1></div><div class=uk-form-row><label>Meta description</label><textarea rows=4 v-model=model.description class=uk-width-1-1></textarea></div></div>"
 
 },{"vueify/lib/insert-css":1}],3:[function(require,module,exports){
 'use strict';
