@@ -1,8 +1,10 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 var inserted = exports.cache = {}
 
+function noop () {}
+
 exports.insert = function (css) {
-  if (inserted[css]) return
+  if (inserted[css]) return noop
   inserted[css] = true
 
   var elem = document.createElement('style')
@@ -15,12 +17,15 @@ exports.insert = function (css) {
   }
 
   document.getElementsByTagName('head')[0].appendChild(elem)
-  return elem
+  return function () {
+    document.getElementsByTagName('head')[0].removeChild(elem)
+    inserted[css] = false
+  }
 }
 
 },{}],2:[function(require,module,exports){
-var __vueify_insert__ = require("vueify/lib/insert-css")
-var __vueify_style__ = __vueify_insert__.insert(".p-metatags__google-title{color:blue;text-decoration:underline}.p-metatags__google-link{color:green}.p-metatags__preview{margin:5px 0 15px;padding:10px;color:#000;background:#fff}")
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".p-metatags__google-title{color:blue;text-decoration:underline}.p-metatags__google-link{color:green}.p-metatags__preview{margin:5px 0 15px;padding:10px;color:#000;background:#fff}")
+;(function(){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -49,8 +54,11 @@ exports.default = {
     }
   }
 };
+})()
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "<div>Google snippet preview:<div class=p-metatags__preview><div class=p-metatags__google-title>{{ model.title }}</div><div class=p-metatags__google-link>yoursite.com/example</div><div class=p-metatags__google-description>{{ model.description }}</div></div><div class=uk-form-row><label>SEO Title</label><input type=text v-model=model.title class=uk-width-1-1></div><div class=uk-form-row><label>Meta description</label><textarea rows=4 v-model=model.description class=uk-width-1-1></textarea></div></div>"
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._v("\n  Google snippet preview:\n  "),_c('div',{staticClass:"p-metatags__preview"},[_c('div',{staticClass:"p-metatags__google-title"},[_vm._v(_vm._s(_vm.model.title))]),_vm._v(" "),_c('div',{staticClass:"p-metatags__google-link"},[_vm._v("yoursite.com/example")]),_vm._v(" "),_c('div',{staticClass:"p-metatags__google-description"},[_vm._v(_vm._s(_vm.model.description))])]),_vm._v(" "),_c('div',{staticClass:"uk-form-row"},[_c('label',[_vm._v("SEO Title")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.model.title),expression:"model.title"}],staticClass:"uk-width-1-1",attrs:{"type":"text"},domProps:{"value":(_vm.model.title)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.model, "title", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"uk-form-row"},[_c('label',[_vm._v("Meta description")]),_vm._v(" "),_c('textarea',{directives:[{name:"model",rawName:"v-model",value:(_vm.model.description),expression:"model.description"}],staticClass:"uk-width-1-1",attrs:{"rows":"4"},domProps:{"value":(_vm.model.description)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.model, "description", $event.target.value)}}})])])}
+__vue__options__.staticRenderFns = []
 
 },{"vueify/lib/insert-css":1}],3:[function(require,module,exports){
 'use strict';
