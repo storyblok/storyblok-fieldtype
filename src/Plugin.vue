@@ -24,12 +24,14 @@ export default {
   methods: {
     initWith() {
       return {
+        // needs to be equal to your storyblok plugin name
         plugin: 'my-plugin-name',
         title: 'Your title',
         description: 'Your description'
       }
     },
     pluginCreated() {
+      // eslint-disable-next-line
       console.log('plugin:created')
     }
   },
