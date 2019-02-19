@@ -2,18 +2,18 @@
   <div>
     Google snippet preview:
     <div class="p-metatags__preview">
-      <div class="p-metatags__google-title">{{ model.title }}</div>
+      <div class="p-metatags__google-title">{{ model.title || 'Your title' }}</div>
       <div class="p-metatags__google-link">yoursite.com/example</div>
-      <div class="p-metatags__google-description">{{ model.description }}</div>
+      <div class="p-metatags__google-description">{{ model.description || 'Your description' }}</div>
     </div>
     <div class="uk-form-row">
-      <label>SEO Title</label>
-      <input type="text" v-model="model.title" class="uk-width-1-1">
+      <label>Meta Title</label>
+      <input type="text" placeholder="Your title" v-model="model.title" class="uk-width-1-1">
     </div>
 
     <div class="uk-form-row">
       <label>Meta description</label>
-      <textarea rows="4" v-model="model.description" class="uk-width-1-1"></textarea>
+      <textarea rows="4" placeholder="Your description" v-model="model.description" class="uk-width-1-1"></textarea>
     </div>
   </div>
 </template>
@@ -26,13 +26,13 @@ export default {
       return {
         // needs to be equal to your storyblok plugin name
         plugin: 'my-plugin-name',
-        title: 'Your title',
-        description: 'Your description'
+        title: '',
+        description: ''
       }
     },
     pluginCreated() {
       // eslint-disable-next-line
-      console.log('plugin:created')
+      console.log('View source and customize: https://github.com/storyblok/storyblok-fieldtype')
     }
   },
   watch: {
