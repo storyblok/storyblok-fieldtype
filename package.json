@@ -3,24 +3,13 @@
   "description": "A Storyblok Field-Type Plugin Project",
   "author": {
     "name": "Storyblok",
-    "email": "it@storyblok.com",
+    "email": "opensource@storyblok.com",
     "url": "https://www.storyblok.com/"
   },
-  "contributors": [
-    {
-      "name": "Alexander Feiglstorfer",
-      "email": "af@storyblok.com",
-      "url": "https://www.storyblok.com/"
-    },
-    {
-      "name": "Dominik Angerer",
-      "email": "da@storyblok.com",
-      "url": "https://www.storyblok.com/"
-    }
-  ],
   "version": "2.0.0",
   "private": true,
   "scripts": {
+    "local": "node .storyblok/local.js & npm run serve",
     "dev": "npm run serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
