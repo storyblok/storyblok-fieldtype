@@ -21,6 +21,17 @@
       window.StoryblokPluginRegistered = false;
       window.StoryblokFieldUid = 'dev';
     </script>
+
+    <div id="note" style="display:none; text-align: center; margin-top: 120px;">
+      <img width="100px" src="https://img2.storyblok.com/250x250/f/51376/1280x1280/83bf46825c/logo-icon-with-bottom.png" alt="">
+      <h1>The Storyblok Field-type starter is running.<br>Next: Open the Sandbox for your field-type below.</h1>
+      <a style="background: #09b3af; color: #fff; display:inline-block; padding: 10px 15px;" href="http://localhost:4040/#!/partner/fields/">Open Now</a>
+    </div>
+    <script type="text/javascript">
+      if ( window.location === window.parent.location ) {
+        document.querySelector('#note').style.display = 'block'
+      }
+    </script>
   
     <script src="https://commerce.storyblok.com/storyblok-plugin/app.bundle.js"></script>
     <!-- built files will be auto injected -->

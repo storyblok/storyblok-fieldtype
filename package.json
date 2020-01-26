@@ -9,9 +9,8 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "local": "node .storyblok/local.js & npm run serve",
     "dev": "npm run serve",
-    "serve": "vue-cli-service serve",
+    "serve": "node .storyblok/local.js & vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },

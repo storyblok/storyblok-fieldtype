@@ -24,8 +24,7 @@ export default {
   methods: {
     initWith() {
       return {
-        // needs to be equal to your storyblok plugin name
-        plugin: 'my-plugin-name',
+        plugin: window.StoryblokPluginConfiguration.name,
         title: '',
         description: ''
       }

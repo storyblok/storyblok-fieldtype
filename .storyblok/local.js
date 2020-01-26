@@ -1,5 +1,6 @@
 const http = require('http')
 const fs = require('fs')
+const open = require('open')
  
 const server = http.createServer((req, res) => {
   fs.readFile(`.storyblok/local.html`, (err, data) => {
@@ -14,5 +15,8 @@ const server = http.createServer((req, res) => {
 })
 
 server.listen(4040, () => {
-  console.log('Running at http://localhost:4040/')
+  console.log('Storyblok Local Plugin environment running at http://localhost:4040/#!/partner/fields')
+  setTimeout(() => {
+    open('http://localhost:4040/#!/me/partner/fields')
+  }, 1000)
 })
