@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>storyblok-fieldtype</title>
-    <link href="https://app.storyblok.com/css/index-latest.css" rel="stylesheet" type="text/css">
+    <link href="https://app.storyblok.com/assets/css/index-latest.css" rel="stylesheet" type="text/css">
   </head>
   <body class="uk-form">
     <div id="plugin"></div>
@@ -16,6 +16,12 @@
         height: auto;
         background: transparent;
       }
+
+      @media (max-width: 479px) {
+        .uk-form input, .uk-form select, .uk-form textarea {
+          font-size: inherit;
+        }
+      }
     </style>
     <script type="text/javascript">
       window.StoryblokPluginRegistered = false;
@@ -23,7 +29,7 @@
       // window.StoryblokLocalMode = true;
     </script>
   
-    <script src="https://commerce.storyblok.com/storyblok-plugin/app.bundle.js"></script>
+    <script src="https://app.storyblok.com/assets/js/fieldtype-wrapper.js"></script>
     <!-- built files will be auto injected -->
   </body>
 </html>
