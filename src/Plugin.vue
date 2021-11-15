@@ -25,7 +25,7 @@ export default {
     initWith() {
       return {
         // needs to be equal to your storyblok plugin name
-        plugin: 'cz-test1',
+        plugin: 'my-plugin-name',
         title: '',
         description: ''
       }
