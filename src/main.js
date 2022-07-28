@@ -1,4 +1,5 @@
 import Plugin from './Plugin.vue'
+import 'storyblok-design-system/dist/storyblok-design-system.css'
 
 if (process.env.NODE_ENV == 'development') {
 
