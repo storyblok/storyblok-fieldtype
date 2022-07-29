@@ -62,8 +62,6 @@
       :show-btns="false"
       :exapnded-on-start="true"
       lang="zh"
-      @json-change="onJsonChange"
-      @json-save="onJsonSave"
       @has-error="onError"
     />
     <div v-if="error" class="sb-error">
@@ -90,8 +88,7 @@ export default {
   },
   watch: {
     model: {
-      handler: function (value) {
-        console.log(value)
+      handler(value) {
         this.$emit('changed-model', value)
       },
       deep: true,
@@ -102,12 +99,6 @@ export default {
       return {
         plugin: 'schema-markup',
       }
-    },
-    onJsonChange(value) {
-      console.log('value:', value)
-    },
-    onJsonSave(value) {
-      console.log('value:', value)
     },
     onError(value) {
       console.warn('Json schema:', value)
@@ -144,12 +135,11 @@ export default {
 .sb-group-button button {
   margin-right: 10px;
 }
-div.jsoneditor-menu {
-  background-color: #262b33;
-  border: 1px solid #00b3b0;
-  color: grey;
+div.jsoneditor {
+  border: solid 2px #09b3af;
 }
-.jsoneditor-poweredBy {
+.jsoneditor-poweredBy,
+.jsoneditor-menu {
   display: none;
 }
 </style>
