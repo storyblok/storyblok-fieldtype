@@ -39,13 +39,6 @@
 
       <SbGroupButton size="small" variant="primary" has-spaces>
         <SbButton
-          icon="copy"
-          has-icon-only
-          icon-description="copy"
-          type="button"
-          @click="copyJson"
-        />
-        <SbButton
           icon="delete"
           has-icon-only
           variant="dark"
@@ -55,6 +48,13 @@
         />
       </SbGroupButton>
     </div>
+    <input 
+      v-on:focus="$event.target.select()" 
+      ref="clone" 
+      class="hide"
+      readonly 
+      :value="JSON.stringify(model.schema)"
+    />
     <vue-json-editor
       v-model="model.schema"
       mode="code"
@@ -103,17 +103,8 @@ export default {
     onError(value) {
       console.warn('Json schema:', value)
     },
-    async copyJson() {
-      try {
-        await navigator.clipboard.writeText(this.model.schema)
-      } catch ($e) {
-        this.error = 'Cannot copy JSON to clipboard'
-      }
-    },
     resetJson() {
-      this.model.schema = {
-        '@context': 'https://schema.org/',
-      }
+      this.model.schema = {}
     },
   },
 }
