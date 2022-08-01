@@ -105,10 +105,6 @@ export default {
       this.error = ''
     },
     onError(value) {
-      this.$onGetContext(() => {
-        this.storyItem.error = value
-        console.log(this)
-      })
       this.error = value.toString()
       console.warn('Json schema:', value)
     },
