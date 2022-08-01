@@ -48,12 +48,12 @@
         />
       </SbGroupButton>
     </div>
-    <input 
-      v-on:focus="$event.target.select()" 
-      ref="clone" 
+    <input
+      ref="clone"
       class="hide"
-      readonly 
+      readonly
       :value="JSON.stringify(model.schema)"
+      @focus="$event.target.select()"
     />
     <vue-json-editor
       v-model="model.schema"
@@ -62,6 +62,7 @@
       :show-btns="false"
       :exapnded-on-start="true"
       lang="zh"
+      @json-change="onJsonChange"
       @has-error="onError"
     />
     <div v-if="error" class="sb-error">
@@ -100,7 +101,15 @@ export default {
         plugin: 'schema-markup',
       }
     },
+    onJsonChange() {
+      this.error = ''
+    },
     onError(value) {
+      this.$onGetContext(() => {
+        this.storyItem.error = value
+        console.log(this)
+      })
+      this.error = value.toString()
       console.warn('Json schema:', value)
     },
     resetJson() {

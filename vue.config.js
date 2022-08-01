@@ -1,16 +1,16 @@
 module.exports = {
   configureWebpack: {
     output: {
-      filename: 'export.js'
+      filename: 'export.js',
     },
     optimization: {
-      splitChunks: false
-    }
+      splitChunks: false,
+    },
   },
   filenameHashing: false,
   runtimeCompiler: true,
   productionSourceMap: false,
   css: {
-    extract: false
-  }
+    extract: false,
+  },
 }
