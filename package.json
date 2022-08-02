@@ -1,10 +1,10 @@
 {
   "name": "storyblok-fieldtype",
-  "description": "A Storyblok Field-Type Plugin Project",
+  "description": "SEO schema plugin",
   "author": {
-    "name": "Storyblok",
-    "email": "it@storyblok.com",
-    "url": "https://www.storyblok.com/"
+    "name": "ManyPets",
+    "email": "nathan.hensher@manypets.com",
+    "url": "https://www.manypets.com/"
   },
   "contributors": [
     {
@@ -27,7 +27,10 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "vue": "^2.6.14"
+    "@boughtbymany/eslint-config-bbm": "^6.0.1",
+    "storyblok-design-system": "^1.10.0",
+    "vue": "^2.6.14",
+    "vue-json-editor": "^1.4.3"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",

@@ -1,65 +1,141 @@
+<!-- eslint-disable vuejs-accessibility/form-control-has-label -->
 <template>
-  <div>
-    Google snippet preview:
-    <div class="p-metatags__preview">
-      <div class="p-metatags__google-title">{{ model.title || 'Your title' }}</div>
-      <div class="p-metatags__google-link">yoursite.com/example</div>
-      <div class="p-metatags__google-description">{{ model.description || 'Your description' }}</div>
-    </div>
-    <div class="uk-form-row">
-      <label>Meta Title</label>
-      <input type="text" placeholder="Your title" v-model="model.title" class="uk-width-1-1">
-    </div>
+  <div class="sb-select-wrap">
+    <div class="sb-group-button">
+      <form
+        method="post"
+        target="_blank"
+        action="https://search.google.com/test/rich-results"
+      >
+        <SbButton
+          icon="new-window"
+          has-icon-only
+          icon-description="Rich Results Test"
+          size="small"
+          type="submit"
+        />
+        <textarea
+          name="code_snippet"
+          :value="JSON.stringify(model.schema)"
+          class="hide"
+          hidden
+        />
+      </form>
+      <form method="post" target="_blank" action="https://validator.schema.org">
+        <SbButton
+          icon="new-window"
+          has-icon-only
+          icon-description="Structured Data Testing Tool"
+          size="small"
+          type="submit"
+        />
+        <textarea
+          name="code"
+          :value="JSON.stringify(model.schema)"
+          class="hide"
+          hidden
+        />
+      </form>
 
-    <div class="uk-form-row">
-      <label>Meta description</label>
-      <textarea rows="4" placeholder="Your description" v-model="model.description" class="uk-width-1-1"></textarea>
+      <SbGroupButton size="small" variant="primary" has-spaces>
+        <SbButton
+          icon="delete"
+          has-icon-only
+          variant="dark"
+          icon-description="reset"
+          type="button"
+          @click="resetJson"
+        />
+      </SbGroupButton>
+    </div>
+    <input
+      ref="clone"
+      class="hide"
+      readonly
+      :value="JSON.stringify(model.schema)"
+      @focus="$event.target.select()"
+    />
+    <vue-json-editor
+      v-model="model.schema"
+      mode="code"
+      :modes="['code']"
+      :show-btns="false"
+      :exapnded-on-start="true"
+      lang="zh"
+      @json-change="onJsonChange"
+      @has-error="onError"
+    />
+    <div v-if="error" class="sb-error">
+      {{ error }}
     </div>
   </div>
 </template>
 
 <script>
+import { SbGroupButton, SbButton } from 'storyblok-design-system'
+import vueJsonEditor from 'vue-json-editor'
+
 export default {
+  components: {
+    SbGroupButton,
+    SbButton,
+    vueJsonEditor,
+  },
   mixins: [window.Storyblok.plugin],
-  methods: {
-    initWith() {
-      return {
-        // needs to be equal to your storyblok plugin name
-        plugin: 'my-plugin-name',
-        title: '',
-        description: ''
-      }
-    },
-    pluginCreated() {
-      // eslint-disable-next-line
-      console.log('View source and customize: https://github.com/storyblok/storyblok-fieldtype')
+  data() {
+    return {
+      error: '',
     }
   },
   watch: {
-    'model': {
-      handler: function (value) {
-        this.$emit('changed-model', value);
+    model: {
+      handler(value) {
+        this.$emit('changed-model', value)
       },
-      deep: true
-    }
-  }
+      deep: true,
+    },
+  },
+  methods: {
+    initWith() {
+      return {
+        plugin: 'schema-markup',
+      }
+    },
+    onJsonChange() {
+      this.error = ''
+    },
+    onError(value) {
+      this.error = value.toString()
+      console.warn('Json schema:', value)
+    },
+    resetJson() {
+      this.model.schema = {}
+    },
+  },
 }
 </script>
 
 <style>
-  .p-metatags__google-title {
-    color: blue;
-    text-decoration: underline;
-  }
-
-  .p-metatags__google-link {
-    color: green;
-  }
-
-  .p-metatags__preview {
-    margin: 5px 0 15px;
-    padding: 10px;
-    color: #000;
-    background: #FFF;
-  }
+.hide {
+  display: none;
+}
+.sb-error {
+  color: #ff6159;
+  padding: 10px 0;
+}
+.sb-group-button {
+  display: flex !important;
+  justify-content: right;
+  margin-bottom: 15px;
+}
+.sb-group-button button {
+  margin-right: 10px;
+}
+div.jsoneditor {
+  border: solid 2px #09b3af;
+}
+.jsoneditor-poweredBy,
+.jsoneditor-menu {
+  display: none;
+}
 </style>
